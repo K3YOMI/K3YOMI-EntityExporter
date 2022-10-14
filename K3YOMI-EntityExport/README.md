@@ -25,11 +25,11 @@ Citizen.CreateThread(function()
     entityCoords = GetEntityCoords(Cloned) -- Get the entity Coords
     entityRot = GetEntityRotation(Cloned) -- Get the entity Rotation
     saveEntityMap(Cloned, GetEntityModel(Cloned), entityCoords.x, entityCoords.y, entityCoords.z, entityRot.x, entityRot.y, entityRot.z)
-    Citizen.Wait(100)
+    Wait(100)
     sendMapSaveRequest("mapTest1", tempDataSaving) -- Save the map and export it to the server
-    Citizen.Wait(100)
+    Wait(100)
     requestMaps() -- Request server found maps
-    Citizen.Wait(1000)
+    Wait(1000)
     importMap('mapTest1', false) -- Import the selected map (Spawns the objects/entities)
 end)
 ```
@@ -41,11 +41,11 @@ Citizen.CreateThread(function()
     entityCoords = GetEntityCoords(Cloned) -- Get the entity Coords
     entityRot = GetEntityRotation(Cloned) -- Get the entity Rotation
     exports["K3YOMI-EntityExport"]:saveEntityMap(Cloned, GetEntityModel(Cloned), entityCoords.x, entityCoords.y, entityCoords.z, entityRot.x, entityRot.y, entityRot.z)
-    Citizen.Wait(100)
+    Wait(100)
     exports["K3YOMI-EntityExport"]:sendMapSaveRequest("mapTest1", tempDataSaving) -- Save the map and export it to the server
-    Citizen.Wait(100)
+    Wait(100)
     exports["K3YOMI-EntityExport"]:requestMaps() -- Request server found maps
-    Citizen.Wait(1000)
+    Wait(1000)
     exports["K3YOMI-EntityExport"]:importMap('mapTest1', false) -- Import the selected map (Spawns the objects/entities)
 end)
 ```
