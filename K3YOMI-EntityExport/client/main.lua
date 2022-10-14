@@ -31,7 +31,7 @@ function requestMap(mapName)
 end
 function importMap(mapName, properPlacement)
     for d,e in pairs(currentlyLoadedMapObjects['Entity Data']) do
-        Citizen.Wait(100)
+        Wait(100)
         if e['EntityType'] == 1 then
             local Cloned = CreatePed(28, e['EntityModel'], e['PosX'],e['PosY'],e['PosZ'],0.0,true,true)
             SetEntityRotation(Cloned, e['RotX'],e['RotY'],e['RotZ'])
@@ -61,16 +61,3 @@ AddEventHandler("K3YOMI:Server:RequestMapRecieved", function(_data)
     currentlyLoadedMapObjects = _data
 end)
 
-
-Citizen.CreateThread(function()
-    local Cloned = CreatePed(28, 587703123, 12.0,12.0,70.0,0.0,true,true)
-    local entityCoords = GetEntityCoords(Cloned)
-    local entityRot = GetEntityRotation(Cloned)
-    saveEntityMap(Cloned, GetEntityModel(Cloned), entityCoords.x, entityCoords.y, entityCoords.z, entityRot.x, entityRot.y, entityRot.z)
-    Citizen.Wait(100)
-    sendMapSaveRequest("newMap1223", tempDataSaving)
-    Citizen.Wait(100)
-    requestMap('newMap1223')
-    Citizen.Wait(1000)
-    importMap('newMap1223', false)
-end)
