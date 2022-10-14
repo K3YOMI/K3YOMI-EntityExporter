@@ -1,0 +1,17 @@
+{
+    "Map Name": "newMap1223",
+    "Time Saved": "October 13, 2022 | 09:02 PM",
+    "Created By": "BillyTheBisexual",
+    "Entity Data": {
+        "6170371": {
+            "EntityType": 1,
+            "RotY": -0.0,
+            "PosY": 12.0,
+            "PosX": 12.0,
+            "RotX": 0.0,
+            "PosZ": 71.0,
+            "EntityModel": 587703123,
+            "RotZ": 0.0
+        }
+    }
+}
