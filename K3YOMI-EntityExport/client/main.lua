@@ -33,7 +33,7 @@ function importMap(mapName, properPlacement)
     for i,c in pairs(currentlyLoadedMapObjects) do 
         if (i == mapName) then 
             for d,e in pairs(c['Entity Data']) do
-                Citizen.Wait(100)
+                Wait(100)
                 if e['EntityType'] == 1 then
                     local Cloned = CreatePed(28, e['EntityModel'], e['PosX'],e['PosY'],e['PosZ'],0.0,true,true)
                     SetEntityRotation(Cloned, e['RotX'],e['RotY'],e['RotZ'])
