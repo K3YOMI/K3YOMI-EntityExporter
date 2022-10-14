@@ -12,7 +12,7 @@ A live map importer and exporter framework
 # Documentation
 | **Exports** | **Description** |
 | ------ | ------ |
-| **requestMaps()** | *Sends a NetEvent to the server to get a list of all the maps that are currently being saved* |
+| **requestMap(mapName)** | *Sends a NetEvent to the server to get a certain maps data* |
 | **sendMapSaveRequest(mapName, mapData)** | *Sends a NetEvent to the server to save the exported map data* |
 | **deleteEntityMap(entity)** | *Deleted the imported entity in the temp data* |
 | **saveEntityMap(entity,model,x1,x2,x3,r1,r2,r3)** | *Imports the entity in the temp map data so we can export this later to a full map* |
@@ -21,16 +21,16 @@ A live map importer and exporter framework
 ## Example (Internal)
 ```lua
 Citizen.CreateThread(function()
-    local Cloned = CreatePed(28, 951767867, 12.0,12.0,70.0,0.0,true,true) -- Entity we spawned
-    entityCoords = GetEntityCoords(Cloned) -- Get the entity Coords
-    entityRot = GetEntityRotation(Cloned) -- Get the entity Rotation
+    local Cloned = CreatePed(28, 587703123, 12.0,12.0,70.0,0.0,true,true)
+    local entityCoords = GetEntityCoords(Cloned)
+    local entityRot = GetEntityRotation(Cloned)
     saveEntityMap(Cloned, GetEntityModel(Cloned), entityCoords.x, entityCoords.y, entityCoords.z, entityRot.x, entityRot.y, entityRot.z)
-    Citizen.Wait(100)
-    sendMapSaveRequest("mapTest1", tempDataSaving) -- Save the map and export it to the server
-    Citizen.Wait(100)
-    requestMaps() -- Request server found maps
-    Citizen.Wait(1000)
-    importMap('mapTest1', false) -- Import the selected map (Spawns the objects/entities)
+    Wait(100)
+    sendMapSaveRequest("mapTest1", tempDataSaving)
+    Wait(100)
+    requestMap('mapTest1')
+    Wait(1000)
+    importMap('mapTest1', false)
 end)
 ```
 
@@ -41,11 +41,11 @@ Citizen.CreateThread(function()
     entityCoords = GetEntityCoords(Cloned) -- Get the entity Coords
     entityRot = GetEntityRotation(Cloned) -- Get the entity Rotation
     exports["K3YOMI-EntityExport"]:saveEntityMap(Cloned, GetEntityModel(Cloned), entityCoords.x, entityCoords.y, entityCoords.z, entityRot.x, entityRot.y, entityRot.z)
-    Citizen.Wait(100)
+    Wait(100)
     exports["K3YOMI-EntityExport"]:sendMapSaveRequest("mapTest1", tempDataSaving) -- Save the map and export it to the server
-    Citizen.Wait(100)
-    exports["K3YOMI-EntityExport"]:requestMaps() -- Request server found maps
-    Citizen.Wait(1000)
+    Wait(100)
+    exports["K3YOMI-EntityExport"]:requestMap("mapTest1") -- Request server found maps
+    Wait(1000)
     exports["K3YOMI-EntityExport"]:importMap('mapTest1', false) -- Import the selected map (Spawns the objects/entities)
 end)
 ```
